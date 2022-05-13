@@ -45,10 +45,12 @@ while (true)
 }
 
 
-
+*/
 //Ler Ficheiros CSV
 
 using JogoForca_21210;
+
+List<Palavra> palavras = new List<Palavra>();
 
 using (StreamReader sr = new StreamReader("/Users/joaomonge/RiderProjects/JogoForca_21210/palavras.csv")) {
     string line;
@@ -59,10 +61,30 @@ using (StreamReader sr = new StreamReader("/Users/joaomonge/RiderProjects/JogoFo
     {
         String[] splitted = line.Split(';');
         Palavra p = new Palavra(splitted[0], (Categoria) Int16.Parse(splitted[1]));
-        Console.WriteLine(p.categoria);
+        palavras.Add(p);
     }
 }
 
-*/
 
-//Categoria sorteada = 
+//Escolher uma categoria aleatoria
+var rnd = new Random();
+//Gerar uma Categoria aleatoria com base no quantidade de valores que este Enumerado têm
+Categoria escolhida = (Categoria) rnd.Next(Enum.GetNames(typeof(Categoria)).Length);
+Console.WriteLine(escolhida);
+
+//Lista para guardar apenas as palavras da categoria selecionada
+List<Palavra> palavrasCategoria = new List<Palavra>();
+
+//Percorrer todas as palavras que estavam no ficheiro e adicionalas à nova lista
+foreach (var pav in palavras)
+{
+    if (pav.categoria == escolhida)
+    {
+        palavrasCategoria.Add(pav);
+    }
+}
+
+//Obter uma chave aleatoria (Palavra que o utilizador deve advinhar)
+Palavra chave = palavrasCategoria[rnd.Next(palavrasCategoria.Count)];
+
+Console.WriteLine(chave.palavra);
