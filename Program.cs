@@ -1,4 +1,4 @@
-﻿
+﻿/*
 String chave = "rato"; // A palavra que o utilizador deve adivinhar
 
 //Como as strings são dificeis de trabalha e como vamos receber uma letra de cada vez. A estruta array de caracteres adapta-se melhor ao problema
@@ -9,6 +9,7 @@ for (int i = 0; i < chave.Length; i++)
 {
     resultado[i] = '_';
 } 
+
 
 //Ciclo infinito
 while (true)
@@ -45,4 +46,23 @@ while (true)
 
 
 
+//Ler Ficheiros CSV
 
+using JogoForca_21210;
+
+using (StreamReader sr = new StreamReader("/Users/joaomonge/RiderProjects/JogoForca_21210/palavras.csv")) {
+    string line;
+
+    // Read and display lines from the file until 
+    // the end of the file is reached. 
+    while ((line = sr.ReadLine()) != null)
+    {
+        String[] splitted = line.Split(';');
+        Palavra p = new Palavra(splitted[0], (Categoria) Int16.Parse(splitted[1]));
+        Console.WriteLine(p.categoria);
+    }
+}
+
+*/
+
+//Categoria sorteada = 
